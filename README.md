@@ -91,5 +91,20 @@
 
 В ходе исследования были выявлены значимые закономерности, что позволило разработать алгоритм для рекомендации объемов тендеров на арматуру.
 
+Сравнение моделей
 
+ Ноутбук                Модель  \
+0  BaseLine_CatBoost copy     CatBoostRegressor   
+1       BaseLine_CatBoost     CatBoostRegressor   
+2            Stationarity  VAR, VARIMA, SARIMAX   
+
+                                  Гиперпараметры Разделение данных  \
+0  iterations=10000, learning_rate=0.03, depth=6     shuffle=False   
+1    iterations=1000, learning_rate=0.1, depth=6   random_state=42   
+2      VARIMA(maxlags=5), SARIMAX(order=(1,0,1))    train_size=80%   
+
+              Метрики                                       Визуализация  
+0        MAE, R2, MSE             График фактических и предсказанных цен  
+1        MAE, R2, MSE             График фактических и предсказанных цен  
+2  R2, MAE, MSE, RMSE  График временных рядов, прогнозов VAR, VARIMA,...  
 
