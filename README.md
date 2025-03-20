@@ -93,35 +93,4 @@
 
 Сравнение моделей
 
-import pandas as pd
-
-# Создание таблицы сравнения моделей
-comparison_data = {
-    "Ноутбук": ["BaseLine_CatBoost copy", "BaseLine_CatBoost", "Stationarity"],
-    "Модель": ["CatBoostRegressor", "CatBoostRegressor", "VAR, VARIMA, SARIMAX"],
-    "Гиперпараметры": [
-        "iterations=10000, learning_rate=0.03, depth=6",
-        "iterations=1000, learning_rate=0.1, depth=6",
-        "VARIMA(maxlags=5), SARIMAX(order=(1,0,1))"
-    ],
-    "Разделение данных": [
-        "shuffle=False",
-        "random_state=42",
-        "train_size=80%"
-    ],
-    "Метрики": [
-        "MAE, R2, MSE",
-        "MAE, R2, MSE",
-        "R2, MAE, MSE, RMSE"
-    ],
-    "Визуализация": [
-        "График фактических и предсказанных цен",
-        "График фактических и предсказанных цен",
-        "График временных рядов, прогнозов VAR, VARIMA, SARIMAX"
-    ]
-}
-
-df_comparison = pd.DataFrame(comparison_data)
-df_comparison
-
 
