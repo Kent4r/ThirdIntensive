@@ -93,4 +93,9 @@
 
 Сравнение моделей
 
-
+| Ноутбук                | Модель               | Гиперпараметры                                | Разделение данных                                | Метрики                                      | Визуализация                                           |
+|:-----------------------|:---------------------|:----------------------------------------------|:-------------------------------------------------|:---------------------------------------------|:-------------------------------------------------------|
+| BaseLine_CatBoost copy | CatBoostRegressor    | iterations=10000, learning_rate=0.03, depth=6 | shuffle=False                                    | MAE, R2, MSE                                 | График фактических и предсказанных цен                 |
+| BaseLine_CatBoost      | CatBoostRegressor    | iterations=1000, learning_rate=0.1, depth=6   | random_state=42                                  | MAE, R2, MSE                                 | График фактических и предсказанных цен                 |
+| Stationarity           | VAR, VARIMA, SARIMAX | VARIMA(maxlags=5), SARIMAX(order=(1,0,1))     | train_size=80%                                   | R2, MAE, MSE, RMSE                           | График временных рядов, прогнозов VAR, VARIMA, SARIMAX |
+| XGBoost_Model          | XGBoostRegressor     | objective='reg:squarederror'                  | train_test_split(test_size=0.2, random_state=42) | MAE: 1242.21, MSE: 4798512.99, RMSE: 2190.55 | График фактических и прогнозируемых цен                |
