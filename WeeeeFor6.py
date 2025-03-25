@@ -13,7 +13,7 @@ def predict_price():
     ygb = df['Цена на арматуру']
     Xgb['rolling_mean'] = ygb.rolling(window=3, min_periods=1).mean()
 
-    for _ in range(15):
+    for _ in range(6):
 
         # Определяем модель
         xgb_model = XGBRegressor()
@@ -38,6 +38,6 @@ def predict_price():
         Xgb = pd.concat([Xgb, empty_data], ignore_index=True)
         Xgb['rolling_mean'] = ygb.rolling(window=3, min_periods=1).mean()
 
-    return(ygb[-15:])
+    return(ygb[-6:])
 
 predict_price()
