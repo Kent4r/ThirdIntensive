@@ -6,14 +6,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def predict_price():
+def predict_price(num_of_weeks):
     df = pd.read_csv("df_merged_cleaned_highest_corr.csv")
     df['Date'] = pd.to_datetime(df['Date'])
     Xgb = df.drop(columns=['Цена на арматуру', 'Date', 'Лом_3А, РФ CPT ж/д Южный ФО, руб./т, без НДС', 'Лом_3А, РФ CPT ж/д Центральный ФО, руб./т, без НДС', 'Лом_3А, РФ FCA ж/д респ. Татарстан, руб./т, без НДС', 'Лом_3А, РФ FCA ж/д Московский регион, руб./т, без НДС', 'Лом_3А, РФ CPT ж/д Уральский ФО, руб./т, без НДС', 'Чугун_CFR Турция, $/т'])
     ygb = df['Цена на арматуру']
     Xgb['rolling_mean'] = ygb.rolling(window=3, min_periods=1).mean()
 
-    for _ in range(6):
+    for _ in range(num_of_weeks):
 
         # Определяем модель
         xgb_model = XGBRegressor()
@@ -38,6 +38,6 @@ def predict_price():
         Xgb = pd.concat([Xgb, empty_data], ignore_index=True)
         Xgb['rolling_mean'] = ygb.rolling(window=3, min_periods=1).mean()
 
-    return(ygb[-6:])
+    return(ygb[-num_of_weeks:])
 
-predict_price()
+# predict_price()
